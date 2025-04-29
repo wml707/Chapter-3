@@ -3,12 +3,12 @@ package com.example.chapter3.homework;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ListBaseAdapter extends BaseAdapter {
 
     private static final int NUM_LIST_ITEMS = 5;
-
 
     @Override
     public int getCount() {
@@ -31,17 +31,35 @@ public class ListBaseAdapter extends BaseAdapter {
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = View.inflate(parent.getContext(), R.layout.item, null);
-            holder.itemText = (TextView) convertView.findViewById(R.id.item_text);
+            holder.avatarImage = (ImageView) convertView.findViewById(R.id.item_avatar);
+            holder.itemName = (TextView) convertView.findViewById(R.id.item_name);
+            holder.itemStatus = (TextView) convertView.findViewById(R.id.item_status);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.itemText.setText("好友 " + String.valueOf(position + 1));
+        // 设置头像
+        holder.avatarImage.setImageResource(R.drawable.avatar_placeholder);  // 头像资源可以动态设置
+
+        // 设置好友名称
+        holder.itemName.setText("好友 " + (position + 1));
+
+        // 设置状态（这里假设状态为“在线”）
+        if (position % 2 == 0) {
+            holder.itemStatus.setText("在线");
+            holder.itemStatus.setTextColor(0xFF4CAF50); // 在线状态为绿色
+        } else {
+            holder.itemStatus.setText("离线");
+            holder.itemStatus.setTextColor(0xFF757575); // 离线状态为灰色
+        }
+
         return convertView;
     }
 
     private static class ViewHolder {
-        private TextView itemText;
+        private ImageView avatarImage;
+        private TextView itemName;
+        private TextView itemStatus;
     }
 }

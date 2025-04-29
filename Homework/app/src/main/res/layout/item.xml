@@ -1,19 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:orientation="horizontal">
 
+    <!-- 头像部分 -->
+    <ImageView
+        android:id="@+id/item_avatar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/avatar_placeholder"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="Avatar" />
+
+    <!-- 好友名称部分 -->
     <TextView
-        android:id="@+id/item_text"
-        style="@style/TextAppearance.AppCompat.Title"
+        android:id="@+id/item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|start"
-        android:fontFamily="monospace"
-        android:textSize="22sp"
-        tools:text="好友 1" />
+        android:layout_toEndOf="@id/item_avatar"
+        android:layout_centerVertical="true"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:fontFamily="sans-serif-medium"
+        android:text="好友 1" />
 
+    <!-- 状态/备注信息部分（如果需要）-->
+    <TextView
+        android:id="@+id/item_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:textSize="14sp"
+        android:textColor="#888888"
+        android:text="在线" />
 
 </RelativeLayout>
